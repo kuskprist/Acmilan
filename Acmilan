@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>AC Milan – Légendes, Jeux & FC26</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+  <!-- Police Google (optionnel, remplaçable) -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+
+
+  <style>
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+
+    :root {
+
+      --red: #e30613;
+
+      --bg: #050509;
+
+      --card-bg: rgba(10,10,20,0.9);
+
+      --text: #f5f5f5;
+
+      --accent: #00f7ff;
+
+      --shadow-neon: 0 0 12px rgba(227,6,19,0.7), 0 0 28px rgba(0,247,255,0.5);
+
+    }
+
+
+
+    body {
+
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+      background: radial-gradient(circle at top, #1b0204 0, #050509 45%, #050509 100%);
+
+      color: var(--text);
+
+      line-height: 1.6;
+
+      overflow-x: hidden;
+
+    }
+
+
+
+    /* VIDÉO DE FOND */
+
+    .bg-video {
+
+      position: fixed;
+
+      top: 50%;
+
+      left: 50%;
+
+      min-width: 100%;
+
+      min-height: 100%;
+
+      width: auto;
+
+      height: auto;
+
+      z-index: -2;
+
+      transform: translate(-50%, -50%);
+
+      filter: brightness(0.25);
+
+      object-fit: cover;
+
+    }
+
+    .bg-overlay {
+
+      position: fixed;
+
+      inset: 0;
+
+      background: radial-gradient(circle at top, rgba(227,6,19,0.25), rgba(0,0,0,0.9));
+
+      z-index: -1;
+
+      pointer-events: none;
+
+    }
+
+
+
+    header {
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 10;
+
+      backdrop-filter: blur(20px);
+
+      background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(10,10,24,0.7));
+
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    }
+
+    .nav-inner {
+
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      padding: 10px 18px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+    }
+
+    h1 {
+
+      font-size: 1.4rem;
+
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+
+      color: var(--text);
+
+    }
+
+    h1 span {
+
+      color: var(--red);
+
+    }
+
+
+
+    nav ul {
+
+      list-style: none;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      align-items: center;
+
+    }
+
+    nav a {
+
+      color: #fff;
+
+      text-decoration: none;
+
+      font-size: 0.9rem;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      border: 1px solid transparent;
+
+      transition: 0.25s;
+
+    }
+
+    nav a:hover {
+
+      border-color: rgba(255,255,255,0.35);
+
+      background: rgba(227,6,19,0.25);
+
+      box-shadow: 0 0 8px rgba(227,6,19,0.7);
+
+    }
+
+
+
+    main {
+
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      padding: 25px 18px 60px;
+
+      position: relative;
+
+    }
+
+
+
+    section {
+
+      margin-bottom: 40px;
+
+      padding: 22px 20px 28px;
+
+      border-radius: 18px;
+
+      background: linear-gradient(135deg, rgba(10,10,20,0.92), rgba(10,10,30,0.88));
+
+      border: 1px solid rgba(255,255,255,0.05);
+
+      box-shadow: 0 20px 45px rgba(0,0,0,0.65);
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+    section::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: -20%;
+
+      opacity: 0;
+
+      background: radial-gradient(circle at top left, rgba(227,6,19,0.22), transparent 60%);
+
+      mix-blend-mode: screen;
+
+      transition: opacity 0.5s;
+
+      pointer-events: none;
+
+    }
+
+    section:hover::before {
+
+      opacity: 1;
+
+    }
+
+
+
+    h2 {
+
+      font-size: 1.2rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.18em;
+
+      color: var(--accent);
+
+      margin-bottom: 10px;
+
+    }
+
+    .section-sub {
+
+      font-size: 0.9rem;
+
+      color: #c1c1c1;
+
+      margin-bottom: 14px;
+
+    }
+
+
+
+    .chips {
+
+      margin-top: 8px;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 6px;
+
+    }
+
+    .chip {
+
+      padding: 4px 10px;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(255,255,255,0.15);
+
+      font-size: 0.75rem;
+
+      letter-spacing: 0.06em;
+
+      text-transform: uppercase;
+
+      color: #d8d8d8;
+
+      background: rgba(0,0,0,0.3);
+
+    }
+
+
+
+    .grid-2 {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+
+      gap: 18px;
+
+    }
+
+
+
+    .card {
+
+      background: var(--card-bg);
+
+      border-radius: 16px;
+
+      padding: 14px 14px 16px;
+
+      border: 1px solid rgba(255,255,255,0.04);
+
+      box-shadow: 0 14px 30px rgba(0,0,0,0.7);
+
+      position: relative;
+
+      overflow: hidden;
+
+      transform: translateY(0);
+
+      transition: transform 0.25s, box-shadow 0.25s, border 0.25s;
+
+    }
+
+    .card::after {
+
+      content: "";
+
+      position: absolute;
+
+      inset: -40%;
+
+      background: radial-gradient(circle at top, rgba(0,247,255,0.25), transparent 60%);
+
+      opacity: 0;
+
+      mix-blend-mode: screen;
+
+      pointer-events: none;
+
+      transition: opacity 0.4s;
+
+    }
+
+    .card:hover {
+
+      transform: translateY(-4px);
+
+      border-color: rgba(0,247,255,0.35);
+
+      box-shadow: 0 22px 40px rgba(0,0,0,0.85);
+
+    }
+
+    .card:hover::after {
+
+      opacity: 1;
+
+    }
+
+
+
+    .tag {
+
+      display: inline-block;
+
+      background: linear-gradient(135deg,var(--red),#ff5a5a);
+
+      color: #fff;
+
+      padding: 2px 8px;
+
+      border-radius: 999px;
+
+      font-size: 0.7rem;
+
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+
+      margin-right: 4px;
+
+      margin-bottom: 6px;
+
+    }
+
+
+
+    .bio-img {
+
+      width: 100%;
+
+      border-radius: 12px;
+
+      margin-bottom: 8px;
+
+      object-fit: cover;
+
+      max-height: 200px;
+
+      filter: saturate(1.1);
+
+      transition: transform 0.4s, filter 0.4s;
+
+    }
+
+    .card:hover .bio-img {
+
+      transform: scale(1.04);
+
+      filter: saturate(1.35) brightness(1.05);
+
+    }
+
+
+
+    p {
+
+      font-size: 0.9rem;
+
+      color: #ddd;
+
+      margin-bottom: 6px;
+
+    }
+
+    .small-note {
+
+      font-size: 0.8rem;
+
+      color: #b8b8b8;
+
+    }
+
+
+
+    .stats-table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      margin: 8px 0 6px;
+
+      font-size: 0.8rem;
+
+    }
+
+    .stats-table th,
+
+    .stats-table td {
+
+      padding: 5px 4px;
+
+      border: 1px solid rgba(255,255,255,0.14);
+
+      text-align: center;
+
+    }
+
+    .stats-table th {
+
+      background: rgba(255,255,255,0.06);
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+
+    }
+
+
+
+    details {
+
+      background: rgba(0,0,0,0.38);
+
+      border-radius: 10px;
+
+      padding: 6px 10px 8px;
+
+      margin-top: 6px;
+
+      border: 1px solid rgba(255,255,255,0.11);
+
+    }
+
+    summary {
+
+      cursor: pointer;
+
+      font-size: 0.85rem;
+
+      font-weight: 600;
+
+    }
+
+    details[open] {
+
+      border-color: var(--accent);
+
+      box-shadow: 0 0 12px rgba(0,247,255,0.5);
+
+    }
+
+
+
+    /* VIDÉOS */
+
+    .videos-wrapper {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 14px;
+
+    }
+
+    .videos-wrapper iframe {
+
+      width: 100%;
+
+      max-width: 360px;
+
+      height: 205px;
+
+      border-radius: 14px;
+
+      border: 1px solid rgba(255,255,255,0.12);
+
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+
+    }
+
+
+
+    /* QUIZ & BOUTONS */
+
+    label { font-size: 0.85rem; margin-bottom: 3px; display: block; }
+
+    input[type="text"] {
+
+      width: 100%;
+
+      padding: 6px 9px;
+
+      margin-bottom: 8px;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(255,255,255,0.25);
+
+      background: rgba(0,0,0,0.6);
+
+      color: var(--text);
+
+      outline: none;
+
+      transition: border 0.2s, box-shadow 0.2s;
+
+    }
+
+    input[type="text"]:focus {
+
+      border-color: var(--accent);
+
+      box-shadow: 0 0 12px rgba(0,247,255,0.6);
+
+    }
+
+
+
+    button {
+
+      padding: 7px 14px;
+
+      border-radius: 999px;
+
+      border: none;
+
+      cursor: pointer;
+
+      font-size: 0.8rem;
+
+      font-weight: 600;
+
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+
+      background: linear-gradient(135deg,var(--red),#ff5959);
+
+      color: #fff;
+
+      box-shadow: 0 8px 18px rgba(0,0,0,0.7);
+
+      margin: 4px 6px 4px 0;
+
+      transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
+
+    }
+
+    button:hover {
+
+      transform: translateY(-1px) scale(1.03);
+
+      filter: brightness(1.1);
+
+      box-shadow: 0 10px 24px rgba(0,0,0,0.85);
+
+    }
+
+    button:active {
+
+      transform: translateY(1px) scale(0.98);
+
+      box-shadow: 0 5px 10px rgba(0,0,0,0.7);
+
+    }
+
+    button.secondary {
+
+      background: linear-gradient(135deg,#222,#555);
+
+    }
+
+    button:disabled {
+
+      background: #333;
+
+      cursor: not-allowed;
+
+      box-shadow: none;
+
+    }
+
+
+
+    .quiz-box {
+
+      margin-top: 10px;
+
+      padding: 10px 12px 12px;
+
+      border-radius: 14px;
+
+      background: radial-gradient(circle at top, rgba(0,247,255,0.18), rgba(10,10,26,0.92));
+
+      border: 1px solid rgba(0,247,255,0.4);
+
+    }
+
+    .result {
+
+      margin-top: 6px;
+
+      font-size: 0.85rem;
+
+      font-weight: 600;
+
+    }
+
+
+
+    /* CARTES MEMOIRE */
+
+    .flip-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+
+      gap: 10px;
+
+      margin-top: 12px;
+
+    }
+
+    .flip-card {
+
+      perspective: 900px;
+
+    }
+
+    .flip-inner {
+
+      position: relative;
+
+      width: 100%;
+
+      height: 170px;
+
+      transform-style: preserve-3d;
+
+      transition: transform 0.55s;
+
+      cursor: pointer;
+
+    }
+
+    .flip-card.flipped .flip-inner {
+
+      transform: rotateY(180deg);
+
+    }
+
+    .flip-front,
+
+    .flip-back {
+
+      position: absolute;
+
+      inset: 0;
+
+      border-radius: 14px;
+
+      backface-visibility: hidden;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 10px;
+
+      text-align: center;
+
+    }
+
+    .flip-front {
+
+      background: radial-gradient(circle at top, rgba(255,255,255,0.05), rgba(10,10,26,0.95));
+
+      border: 1px dashed rgba(255,255,255,0.2);
+
+    }
+
+    .flip-back {
+
+      transform: rotateY(180deg);
+
+      background: radial-gradient(circle at top, rgba(227,6,19,0.85), rgba(5,5,10,0.95));
+
+      border: 1px solid rgba(255,255,255,0.3);
+
+      box-shadow: 0 10px 26px rgba(0,0,0,0.9);
+
+    }
+
+
+
+    /* CARTES FC26 / FUTBIN */
+
+    .fc26-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+
+      gap: 16px;
+
+      margin-top: 10px;
+
+    }
+
+    .fc26-grid iframe {
+
+      width: 100%;
+
+      height: 420px;
+
+      border-radius: 18px;
+
+      border: 1px solid rgba(255,255,255,0.15);
+
+      box-shadow: 0 16px 34px rgba(0,0,0,0.9);
+
+    }
+
+    .search-input {
+
+      max-width: 260px;
+
+      margin: 4px 0 10px;
+
+    }
+
+
+
+    /* CLASSEMENT */
+
+    .standings-links {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 6px;
+
+    }
+
+    .standings-links a {
+
+      font-size: 0.75rem;
+
+      text-decoration: none;
+
+      color: var(--accent);
+
+      padding: 5px 10px;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(0,247,255,0.4);
+
+      background: rgba(0,0,0,0.5);
+
+      transition: 0.2s;
+
+    }
+
+    .standings-links a:hover {
+
+      box-shadow: 0 0 12px rgba(0,247,255,0.7);
+
+      background: rgba(0,247,255,0.15);
+
+    }
+
+
+
+    footer {
+
+      text-align: center;
+
+      padding: 18px 10px 28px;
+
+      color: #b1b1b1;
+
+      font-size: 0.78rem;
+
+      border-top: 1px solid rgba(255,255,255,0.08);
+
+      background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(10,10,24,0.85));
+
+    }
+
+
+
+    /* CURSEUR LUMIÈRE */
+
+    .cursor-light {
+
+      position: fixed;
+
+      pointer-events: none;
+
+      width: 220px;
+
+      height: 220px;
+
+      border-radius: 50%;
+
+      background: radial-gradient(circle, rgba(0,247,255,0.35), transparent 70%);
+
+      mix-blend-mode: screen;
+
+      opacity: 0;
+
+      transform: translate(-50%, -50%);
+
+      z-index: 9;
+
+      transition: opacity 0.4s;
+
+    }
+
+
+
+    /* MODE NÉON (toggle) */
+
+    .neon {
+
+      box-shadow: var(--shadow-neon);
+
+    }
+
+    .neon-text {
+
+      text-shadow: 0 0 8px rgba(227,6,19,0.9), 0 0 16px rgba(0,247,255,0.8);
+
+    }
+
+
+
+    @media (max-width: 700px) {
+
+      h1 { font-size: 1.1rem; }
+
+      nav ul { gap: 6px; }
+
+      nav a { font-size: 0.75rem; padding: 5px 8px; }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- VIDEO DE FOND : remplace la source par ta vidéo libre de droits / YouTube MP4 etc. -->
+
+  <video class="bg-video" autoplay muted loop playsinline>
+
+    <source src="https://cdn.coverr.co/videos/coverr-football-game-1575/1080p.mp4" type="video/mp4">
+
+    <!-- Si la vidéo ne charge pas, le gradient reste -->
+
+  </video>
+
+  <div class="bg-overlay"></div>
+
+
+
+  <!-- Halo de lumière qui suit la souris -->
+
+  <div class="cursor-light" id="cursorLight"></div>
+
+
+
+  <header>
+
+    <div class="nav-inner">
+
+      <h1><span>AC</span>Milan Universe</h1>
+
+      <nav>
+
+        <ul>
+
+          <li><a href="#accueil">Accueil</a></li>
+
+          <li><a href="#legendes">Légendes</a></li>
+
+          <li><a href="#videos">Vidéos</a></li>
+
+          <li><a href="#quiz">Mini‑jeux</a></li>
+
+          <li><a href="#memory">Cartes</a></li>
+
+          <li><a href="#classement">Classement 25/26</a></li>
+
+          <li><a href="#fc26">FC26</a></li>
+
+          <li><button id="btnNeon" class="secondary" type="button">Mode Néon</button></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- ACCUEIL -->
+
+    <section id="accueil">
+
+      <h2 class="neon-text">Bienvenue tifoso</h2>
+
+      <p class="section-sub">
+
+        Site fan moderne de l’AC Milan : mini‑jeux, biographie des légendes, vidéos en fond, cartes FC26 Futbin
+
+        et accès rapide au classement en direct de la saison 2025‑2026. [web:21][web:25][web:27][web:30]
+
+      </p>
+
+      <p>
+
+        Bouge ta souris pour voir les effets de lumière, active le mode néon pour un style futuriste, et clique
+
+        dans la nav pour explorer toutes les sections.  
+
+      </p>
+
+      <div class="chips">
+
+        <span class="chip">Animations curseur</span>
+
+        <span class="chip">Vidéo de fond</span>
+
+        <span class="chip">Quiz & cartes</span>
+
+        <span class="chip">Classement live</span>
+
+        <span class="chip">Cartes FC26</span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- LÉGENDES (biographies + images qui marchent) -->
+
+    <section id="legendes">
+
+      <h2>Légendes rossonere</h2>
+
+      <p class="section-sub">
+
+        Quelques figures qui ont fait l’histoire du club avec leurs titres, leurs buts ou leur longévité
+
+        sous le maillot rossonero. [web:22]
+
+      </p>
+
+
+
+      <div class="grid-2">
+
+        <article class="card">
+
+          <span class="tag">Capitaine</span><span class="tag">Défenseur</span>
+
+          <img class="bio-img" src="https://images.football-italia.net/wp-content/uploads/2021/07/Paolo-Maldini-AC-Milan.jpg"
+
+               alt="Paolo Maldini">
+
+          <h3>Paolo Maldini</h3>
+
+          <p>
+
+            Défenseur emblématique qui a disputé plus de 900 matchs officiels avec Milan et remporté de
+
+            nombreux titres en Serie A et en compétitions européennes. [web:22]
+
+          </p>
+
+          <table class="stats-table">
+
+            <tr><th>Poste</th><th>Matchs</th><th>Titres C1</th></tr>
+
+            <tr><td>Arrière / central</td><td>900+</td><td>5</td></tr>
+
+          </table>
+
+        </article>
+
+
+
+        <article class="card">
+
+          <span class="tag">Libéro</span><span class="tag">Icône</span>
+
+          <img class="bio-img" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Franco_Baresi_2008.jpg"
+
+               alt="Franco Baresi">
+
+          <h3>Franco Baresi</h3>
+
+          <p>
+
+            Libéro de référence, Baresi a mené la défense milanaise durant l’une des périodes les plus
+
+            dominantes d’Europe, avec plusieurs scudetti et coupes d’Europe. [web:22]
+
+          </p>
+
+          <table class="stats-table">
+
+            <tr><th>Poste</th><th>Matchs</th><th>Numéro</th></tr>
+
+            <tr><td>Libéro</td><td>700+</td><td>6 (retiré)</td></tr>
+
+          </table>
+
+        </article>
+
+
+
+        <article class="card">
+
+          <span class="tag">Recordman</span><span class="tag">Buteur</span>
+
+          <img class="bio-img" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Gunnar_Nordahl.jpg"
+
+               alt="Gunnar Nordahl">
+
+          <h3>Gunnar Nordahl</h3>
+
+          <p>
+
+            Avant‑centre suédois, meilleur buteur officiel de l’histoire du club avec plus de 220 réalisations
+
+            toutes compétitions confondues. [web:22]
+
+          </p>
+
+          <table class="stats-table">
+
+            <tr><th>Poste</th><th>Buts Milan</th><th>Période</th></tr>
+
+            <tr><td>Avant‑centre</td><td>220+</td><td>Années 1950</td></tr>
+
+          </table>
+
+        </article>
+
+
+
+        <article class="card">
+
+          <span class="tag">Buteur</span><span class="tag">Ballon d’or</span>
+
+          <img class="bio-img" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Andriy_Shevchenko_2010.jpg"
+
+               alt="Andriy Shevchenko">
+
+          <h3>Andriy Shevchenko</h3>
+
+          <p>
+
+            Attaquant ukrainien prolifique, auteur de plus de 170 buts avec Milan et vainqueur de la Ligue
+
+            des champions au début des années 2000. [web:22]
+
+          </p>
+
+          <table class="stats-table">
+
+            <tr><th>Poste</th><th>Buts Milan</th><th>Trophées majeurs</th></tr>
+
+            <tr><td>Avant‑centre</td><td>170+</td><td>Serie A, C1</td></tr>
+
+          </table>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- VIDÉOS (avant‑plan + vidéos accessibles) -->
+
+    <section id="videos">
+
+      <h2>Vidéos AC Milan</h2>
+
+      <p class="section-sub">
+
+        Clique sur les vidéos pour voir des buts et des moments marquants des saisons récentes et passées
+
+        de l’AC Milan. [web:23][web:26][web:29]
+
+      </p>
+
+      <div class="videos-wrapper">
+
+        <iframe src="https://www.youtube.com/embed/n51K1s7LJ5k"
+
+                title="Best Milan Goals 2024/25" allowfullscreen></iframe>
+
+        <iframe src="https://www.youtube.com/embed/OJnPDfk58hc"
+
+                title="Plus beaux buts AC Milan 2025/26" allowfullscreen></iframe>
+
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_EXEMPLE"
+
+                title="Historic Goals - AC Milan" allowfullscreen></iframe>
+
+      </div>
+
+      <p class="small-note">
+
+        Les vidéos viennent de chaînes officielles et de compilations publiques ; pense toujours à respecter
+
+        les droits d’auteur des créateurs et diffuseurs.  
+
+      </p>
+
+    </section>
+
+
+
+    <!-- MINI-JEUX (quiz amélioré) -->
+
+    <section id="quiz">
+
+      <h2>Mini‑jeux Milanisti</h2>
+
+      <p class="section-sub">
+
+        Quiz rapide, mode “score parfait” et effets lumineux sur les bonnes réponses pour rendre
+
+        l’expérience plus fun. [web:22]
+
+      </p>
+
+
+
+      <div class="quiz-box">
+
+        <h3>Quiz simple</h3>
+
+        <label for="q1">Qui est le meilleur buteur de l’histoire de l’AC Milan ?</label>
+
+        <input type="text" id="q1" placeholder="Indice : buteur suédois des années 1950">
+
+        <button id="btn-q1" type="button">Valider</button>
+
+        <div id="res-q1" class="result"></div>
+
+      </div>
+
+
+
+      <div class="quiz-box" id="quiz-advanced-box">
+
+        <h3>Mode “Score parfait”</h3>
+
+        <p class="small-note">
+
+          Enchaîne les bonnes réponses sans te tromper pour débloquer l’animation surprise.  
+
+        </p>
+
+        <p id="qa-question"></p>
+
+        <input type="text" id="qa-answer" placeholder="Ta réponse">
+
+        <button id="qa-validate" type="button">Répondre</button>
+
+        <button id="qa-next" class="secondary" type="button" disabled>Suivant</button>
+
+        <div id="qa-score" class="result"></div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- JEU MEMOIRE / CARTES -->
+
+    <section id="memory">
+
+      <h2>Cartes mémoire AC Milan</h2>
+
+      <p class="section-sub">
+
+        Clique sur les cartes pour les retourner : découvre les noms et postes des légendes et entraîne‑toi
+
+        à les retenir. [web:22]
+
+      </p>
+
+
+
+      <div class="flip-grid" id="flip-grid">
+
+        <div class="flip-card" data-name="Maldini">
+
+          <div class="flip-inner">
+
+            <div class="flip-front"><strong>Carte mystère</strong><span class="small-note">#1</span></div>
+
+            <div class="flip-back">
+
+              <h4>Paolo Maldini</h4>
+
+              <p>Défenseur emblématique et capitaine.</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="flip-card" data-name="Baresi">
+
+          <div class="flip-inner">
+
+            <div class="flip-front"><strong>Carte mystère</strong><span class="small-note">#2</span></div>
+
+            <div class="flip-back">
+
+              <h4>Franco Baresi</h4>
+
+              <p>Libéro légendaire.</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="flip-card" data-name="Nordahl">
+
+          <div class="flip-inner">
+
+            <div class="flip-front"><strong>Carte mystère</strong><span class="small-note">#3</span></div>
+
+            <div class="flip-back">
+
+              <h4>Gunnar Nordahl</h4>
+
+              <p>Meilleur buteur de l’histoire du club.</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="flip-card" data-name="Shevchenko">
+
+          <div class="flip-inner">
+
+            <div class="flip-front"><strong>Carte mystère</strong><span class="small-note">#4</span></div>
+
+            <div class="flip-back">
+
+              <h4>Andriy Shevchenko</h4>
+
+              <p>Avant‑centre prolifique.</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button id="btn-reset-flip" class="secondary" type="button">Tout remettre face cachée</button>
+
+    </section>
+
+
+
+    <!-- CLASSEMENT EN DIRECT LIENS -->
+
+    <section id="classement">
+
+      <h2>Classement Serie A 2025‑26</h2>
+
+      <p class="section-sub">
+
+        Pour voir le classement en direct de la saison 2025‑2026 de l’AC Milan, consulte ces pages mises
+
+        à jour automatiquement par les sites spécialisés. [web:21][web:24][web:25][web:27][web:30]
+
+      </p>
+
+      <p>
+
+        Ton site peut afficher un résumé (position, points) à la main et envoyer l’utilisateur vers des
+
+        tableaux officiels pour tous les détails et les stats en temps réel.  
+
+      </p>
+
+      <div class="standings-links">
+
+        <a href="https://www.acmilan.com/en/season/2025/standings/serie-a" target="_blank" rel="noopener">
+
+          Classement officiel AC Milan
+
+        </a>
+
+        <a href="https://tribuna.com/en/clubs/milan/table/2025-2026/serie-a/" target="_blank" rel="noopener">
+
+          Tableau interactif Tribuna
+
+        </a>
+
+        <a href="https://www.footmercato.net/italie/serie-a/classement" target="_blank" rel="noopener">
+
+          Classement Serie A en direct
+
+        </a>
+
+        <a href="https://www.sofascore.com/tournament/football/italy/serie-a/23" target="_blank" rel="noopener">
+
+          Stats et calendrier Serie A
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CARTES FC26 / FUTBIN -->
+
+    <section id="fc26">
+
+      <h2>Cartes FC26 Futbin</h2>
+
+      <p class="section-sub">
+
+        Intégration des cartes EA FC 26 via Futbin : remplace les URLs par les cartes exactes de chaque
+
+        joueur du Milan. [web:24]
+
+      </p>
+
+
+
+      <label for="fc-search">Filtrer visuellement par nom de joueur :</label>
+
+      <input type="text" id="fc-search" class="search-input" placeholder="Leão, Pulisic, Theo...">
+
+
+
+      <div class="fc26-grid" id="fc-grid">
+
+        <div class="card fc-item" data-name="Leao">
+
+          <h3>Rafael Leão – FC26</h3>
+
+          <iframe src="https://www.futbin.com/26/player/XXXXX/rafael-leao"></iframe>
+
+          <p class="small-note">
+
+            Exemple de carte d’ailier gauche moderne de l’AC Milan dans FC26 Ultimate Team. [web:24]
+
+          </p>
+
+        </div>
+
+        <div class="card fc-item" data-name="Pulisic">
+
+          <h3>Christian Pulisic – FC26</h3>
+
+          <iframe src="https://www.futbin.com/26/player/YYYYY/christian-pulisic"></iframe>
+
+          <p class="small-note">
+
+            Exemple de carte de milieu offensif/ailier droit du club. [web:24]
+
+          </p>
+
+        </div>
+
+        <div class="card fc-item" data-name="Theo">
+
+          <h3>Théo Hernandez – FC26</h3>
+
+          <iframe src="https://www.futbin.com/26/player/ZZZZZ/theo-hernandez"></iframe>
+
+          <p class="small-note">
+
+            Exemple de carte de latéral gauche offensif utilisé par de nombreuses équipes FUT. [web:24]
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer>
+
+    <p>
+
+      Site fan AC Milan – informations biographiques et statistiques inspirées de sources publiques,
+
+      sans reproduction de textes protégés. [web:21][web:22][web:30]
+
+    </p>
+
+    <p>
+
+      Les vidéos et cartes FC26 intégrées restent la propriété de leurs ayants droit (ligues, diffuseurs,
+
+      EA Sports, Futbin).  
+
+    </p>
+
+  </footer>
+
+
+
+  <script>
+
+    // Effet lumière qui suit la souris
+
+    const cursor = document.getElementById('cursorLight');
+
+    document.addEventListener('mousemove', (e) => {
+
+      cursor.style.opacity = 1;
+
+      cursor.style.left = e.clientX + 'px';
+
+      cursor.style.top = e.clientY + 'px';
+
+    });
+
+    document.addEventListener('mouseleave', () => {
+
+      cursor.style.opacity = 0;
+
+    });
+
+
+
+    // Mode Néon
+
+    const btnNeon = document.getElementById('btnNeon');
+
+    btnNeon.addEventListener('click', () => {
+
+      document.querySelectorAll('.card, section').forEach(el => {
+
+        el.classList.toggle('neon');
+
+      });
+
+      document.querySelectorAll('h1, h2').forEach(el => {
+
+        el.classList.toggle('neon-text');
+
+      });
+
+    });
+
+
+
+    // Quiz simple
+
+    const btnQ1 = document.getElementById('btn-q1');
+
+    const resQ1 = document.getElementById('res-q1');
+
+    btnQ1.addEventListener('click', () => {
+
+      const val = document.getElementById('q1').value.trim().toLowerCase();
+
+      if (!val) {
+
+        resQ1.textContent = "Écris une réponse d’abord.";
+
+        resQ1.style.color = "#ffcc00";
+
+        return;
+
+      }
+
+      if (val.includes('nordahl')) {
+
+        resQ1.textContent = "Parfait ! Gunnar Nordahl est bien le meilleur buteur de l’histoire du Milan.";
+
+        resQ1.style.color = "#00ff88";
+
+      } else {
+
+        resQ1.textContent = "Non, cherche un attaquant suédois des années 1950…";
+
+        resQ1.style.color = "#ff5555";
+
+      }
+
+    });
+
+
+
+    // Quiz avancé
+
+    const questions = [
+
+      {
+
+        q: "Quel défenseur légendaire porte le numéro 3 retiré par le Milan ?",
+
+        good: ["maldini","paolo maldini"]
+
+      },
+
+      {
+
+        q: "Quel attaquant ukrainien a marqué plus de 170 buts pour le club ?",
+
+        good: ["shevchenko","andriy shevchenko"]
+
+      },
+
+      {
+
+        q: "Quel buteur suédois est le meilleur scoreur de l’histoire du club ?",
+
+        good: ["nordahl","gunnar nordahl"]
+
+      }
+
+    ];
+
+    let qi = 0;
+
+    let score = 0;
+
+    const qaQ = document.getElementById('qa-question');
+
+    const qaA = document.getElementById('qa-answer');
+
+    const qaVal = document.getElementById('qa-validate');
+
+    const qaNext = document.getElementById('qa-next');
+
+    const qaScoreBox = document.getElementById('qa-score');
+
+    const quizBox = document.getElementById('quiz-advanced-box');
+
+
+
+    function loadQuestion() {
+
+      qaQ.textContent = questions[qi].q;
+
+      qaA.value = "";
+
+      qaNext.disabled = true;
+
+    }
+
+    loadQuestion();
+
+
+
+    qaVal.addEventListener('click', () => {
+
+      const rep = qaA.value.trim().toLowerCase();
+
+      if (!rep) {
+
+        qaScoreBox.textContent = "Écris ta réponse.";
+
+        qaScoreBox.style.color = "#ffcc00";
+
+        return;
+
+      }
+
+      const goodArr = questions[qi].good;
+
+      const ok = goodArr.some(g => g === rep);
+
+      if (ok) {
+
+        score++;
+
+        qaScoreBox.textContent = "Bonne réponse ! Score : " + score + " / " + questions.length;
+
+        qaScoreBox.style.color = "#00ff88";
+
+        qaNext.disabled = false;
+
+        qaVal.disabled = true;
+
+        if (score === questions.length) {
+
+          // petite surprise visuelle
+
+          quizBox.classList.add('neon');
+
+          setTimeout(() => quizBox.classList.remove('neon'), 2000);
+
+        }
+
+      } else {
+
+        score = 0;
+
+        qi = 0;
+
+        qaScoreBox.textContent = "Raté ! Le score repart à zéro, nouvelle série.";
+
+        qaScoreBox.style.color = "#ff5555";
+
+        qaVal.disabled = false;
+
+        qaNext.disabled = true;
+
+        loadQuestion();
+
+      }
+
+    });
+
+
+
+    qaNext.addEventListener('click', () => {
+
+      qi++;
+
+      if (qi >= questions.length) {
+
+        qi = 0;
+
+      }
+
+      qaVal.disabled = false;
+
+      loadQuestion();
+
+    });
+
+
+
+    // Cartes mémoire
+
+    const flipCards = document.querySelectorAll('.flip-card');
+
+    flipCards.forEach(card => {
+
+      card.addEventListener('click', () => {
+
+        card.classList.toggle('flipped');
+
+      });
+
+    });
+
+    document.getElementById('btn-reset-flip').addEventListener('click', () => {
+
+      flipCards.forEach(card => card.classList.remove('flipped'));
+
+    });
+
+
+
+    // Filtre Futbin
+
+    const searchInput = document.getElementById('fc-search');
+
+    const fcItems = document.querySelectorAll('.fc-item');
+
+    searchInput.addEventListener('input', () => {
+
+      const txt = searchInput.value.trim().toLowerCase();
+
+      fcItems.forEach(item => {
+
+        const name = item.getAttribute('data-name').toLowerCase();
+
+        item.style.display = (!txt || name.includes(txt)) ? "" : "none";
+
+      });
+
+    });
+
+  </script>
+
+</body>
+
+</html>
